@@ -25,11 +25,11 @@ Task Management Application - React Intern Practical Interview Task
 
 ## Optional Features Implemented
 
-- ✅ **Search functionality** to filter tasks by title
-- ✅ **Edit task functionality** (inline editing)
-- ✅ **Sorting tasks** by completion status or ID
-- ✅ **Toast notifications** for actions
-- ✅ **Form validation** with error messages
+- **Search functionality** to filter tasks by title
+- **Edit task functionality** (inline editing)
+- **Sorting tasks** by completion status or ID
+- **Toast notifications** for actions
+- **Form validation** with error messages
 
 ## Installation & Setup
 
