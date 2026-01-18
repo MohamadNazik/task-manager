@@ -1,7 +1,7 @@
 const TaskItem = ({ task, onToggle, onDelete }) => {
   return (
     <div
-      className={`relative p-6 rounded-sm shadow-md min-h-[200px] max-w-[250px] w-full transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl ${
+      className={`relative p-6 rounded-sm shadow-md min-h-50 max-w-62.5 w-full transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl ${
         task.color || "bg-yellow-200"
       } ${task.completed ? "opacity-60" : "opacity-100"}`}
     >
@@ -24,7 +24,7 @@ const TaskItem = ({ task, onToggle, onDelete }) => {
             type="checkbox"
             checked={task.completed}
             onChange={() => onToggle(task.id)}
-            className="mt-1.5 w-5 h-5 cursor-pointer accent-green-600 flex-shrink-0"
+            className="mt-1.5 w-5 h-5 cursor-pointer accent-green-600 shrink-0"
           />
           <p
             className={`flex-1 font-bold text-gray-800 text-base leading-relaxed ${
