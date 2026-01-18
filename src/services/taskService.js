@@ -32,11 +32,7 @@ export const createTask = async (taskData) => {
       userId: 1,
     });
 
-    return {
-      ...response.data,
-      id: Date.now(),
-      color: taskData.color,
-    };
+    return response.data;
   } catch (error) {
     console.error("Error creating task:", error.message);
     throw new Error(error.response?.data?.message || "Failed to create task");
