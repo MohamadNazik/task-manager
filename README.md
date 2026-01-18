@@ -1,6 +1,6 @@
 # Task Management Application
 
-React Intern Practical Interview Task
+Practical Exam for Intern-Software Engineer
 
 ## 📸 Application Preview
 
