@@ -2,7 +2,11 @@
 
 React Intern Practical Interview Task
 
-## 🛠️ Tech Stack
+## 📸 Application Preview
+
+![Task Management Application UI](./screenshot.png)
+
+## Tech Stack
 
 - **React** with Vite
 - **Tailwind CSS** for styling
@@ -10,7 +14,7 @@ React Intern Practical Interview Task
 - **React Toastify** for notifications
 - **React Hooks:** useState, useEffect, useMemo
 
-## ✅ Required Features Implemented
+## Required Features Implemented
 
 1. **View all tasks (READ)** - Fetch and display tasks from API
 2. **Add new tasks (CREATE)** - Create tasks with form input
@@ -19,7 +23,7 @@ React Intern Practical Interview Task
 5. **Mark tasks as complete/incomplete** - Toggle completion status
 6. **Filter tasks by status** - All, Active, Completed filters
 
-## 🌟 Optional Features Implemented
+## Optional Features Implemented
 
 - ✅ **Search functionality** to filter tasks by title
 - ✅ **Edit task functionality** (inline editing)
@@ -27,7 +31,7 @@ React Intern Practical Interview Task
 - ✅ **Toast notifications** for actions
 - ✅ **Form validation** with error messages
 
-## 🚀 Installation & Setup
+## Installation & Setup
 
 ```bash
 # Install dependencies
@@ -38,7 +42,7 @@ npm run dev
 
 ```
 
-## 🔌 API Integration
+## API Integration
 
 Uses [JSONPlaceholder](https://jsonplaceholder.typicode.com/todos) mock REST API for CRUD operations.
 
