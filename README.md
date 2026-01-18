@@ -1,6 +1,6 @@
-# Task Management Application
+# Practical Exam for Intern-Software Engineer
 
-Practical Exam for Intern-Software Engineer
+Task Management Application - React Intern Practical Interview Task
 
 ## 📸 Application Preview
 
