@@ -12,12 +12,14 @@ import TaskList from "./components/TaskList";
 import TaskForm from "./components/TaskForm";
 import FilterButtons from "./components/FilterButtons";
 import SearchBar from "./components/SearchBar";
+import SortButtons from "./components/SortButtons";
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState("id-ascending");
 
   useEffect(() => {
     loadTasks();
@@ -136,8 +138,16 @@ function App() {
       );
     }
 
-    return filtered;
-  }, [tasks, filter, searchQuery]);
+    const sorted = [...filtered];
+
+    if (sortBy === "id-ascending") {
+      sorted.sort((a, b) => a.id - b.id);
+    } else if (sortBy === "id-descending") {
+      sorted.sort((a, b) => b.id - a.id);
+    }
+
+    return sorted;
+  }, [tasks, filter, searchQuery, sortBy]);
 
   return (
     <div className="min-h-screen bg-linear-to-br from-yellow-50 via-orange-50 to-pink-50 py-8 px-4">
@@ -153,6 +163,8 @@ function App() {
         <FilterButtons currentFilter={filter} onFilterChange={setFilter} />
 
         <SearchBar query={searchQuery} onSearchChange={setSearchQuery} />
+
+        <SortButtons currentSort={sortBy} onSortChange={setSortBy} />
 
         <TaskList
           tasks={filteredTasks}
