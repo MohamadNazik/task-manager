@@ -1,6 +1,6 @@
 import TaskItem from "./TaskItem";
 
-const TaskList = ({ tasks, loading, onToggle, onDelete }) => {
+const TaskList = ({ tasks, loading, onToggle, onDelete, onEdit }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
       {loading ? (
@@ -18,6 +18,7 @@ const TaskList = ({ tasks, loading, onToggle, onDelete }) => {
             task={task}
             onToggle={onToggle}
             onDelete={onDelete}
+            onEdit={onEdit}
           />
         ))
       )}

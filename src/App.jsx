@@ -102,6 +102,25 @@ function App() {
     }
   };
 
+  const handleEditTask = async (id, newTitle) => {
+    try {
+      const oldTask = tasks.find((t) => t.id === id);
+
+      setTasks((prevTasks) =>
+        prevTasks.map((t) => (t.id === id ? { ...t, title: newTitle } : t)),
+      );
+
+      await updateTask(id, { title: newTitle });
+      toast.success("Task updated successfully!");
+    } catch (error) {
+      setTasks((prevTasks) =>
+        prevTasks.map((t) => (t.id === id ? oldTask : t)),
+      );
+      toast.error("Failed to update task.");
+      console.error(error);
+    }
+  };
+
   const filteredTasks = useMemo(() => {
     let filtered = tasks;
 
@@ -140,6 +159,7 @@ function App() {
           loading={loading}
           onToggle={handleToggleTask}
           onDelete={handleDeleteTask}
+          onEdit={handleEditTask}
         />
       </div>
 
