@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -11,11 +11,13 @@ import { getRandomColor } from "./constants/stickyColors";
 import TaskList from "./components/TaskList";
 import TaskForm from "./components/TaskForm";
 import FilterButtons from "./components/FilterButtons";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     loadTasks();
@@ -63,19 +65,19 @@ function App() {
 
       setTasks((prevTasks) =>
         prevTasks.map((t) =>
-          t.id === id ? { ...t, completed: !t.completed } : t
-        )
+          t.id === id ? { ...t, completed: !t.completed } : t,
+        ),
       );
 
       await updateTask(id, { completed: !task.completed });
       toast.success(
-        task.completed ? "Task marked as active" : "Task completed!"
+        task.completed ? "Task marked as active" : "Task completed!",
       );
     } catch (error) {
       setTasks((prevTasks) =>
         prevTasks.map((t) =>
-          t.id === id ? { ...t, completed: !t.completed } : t
-        )
+          t.id === id ? { ...t, completed: !t.completed } : t,
+        ),
       );
       toast.error("Failed to update task.");
       console.error(error);
@@ -100,18 +102,26 @@ function App() {
     }
   };
 
-  const getFilteredTasks = () => {
+  const filteredTasks = useMemo(() => {
+    let filtered = tasks;
+
     if (filter === "active") {
-      return tasks.filter((task) => !task.completed);
+      filtered = filtered.filter((task) => !task.completed);
     } else if (filter === "completed") {
-      return tasks.filter((task) => task.completed);
-    } else {
-      return tasks;
+      filtered = filtered.filter((task) => task.completed);
     }
-  };
+
+    if (searchQuery.trim()) {
+      filtered = filtered.filter((task) =>
+        task.title.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
+    }
+
+    return filtered;
+  }, [tasks, filter, searchQuery]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50 py-8 px-4">
+    <div className="min-h-screen bg-linear-to-br from-yellow-50 via-orange-50 to-pink-50 py-8 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-5xl font-bold text-gray-800 mb-2">
@@ -123,8 +133,10 @@ function App() {
 
         <FilterButtons currentFilter={filter} onFilterChange={setFilter} />
 
+        <SearchBar query={searchQuery} onSearchChange={setSearchQuery} />
+
         <TaskList
-          tasks={getFilteredTasks()}
+          tasks={filteredTasks}
           loading={loading}
           onToggle={handleToggleTask}
           onDelete={handleDeleteTask}

@@ -9,9 +9,7 @@ const TaskList = ({ tasks, loading, onToggle, onDelete }) => {
         </div>
       ) : tasks.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-500 text-lg">
-            No tasks yet. Add your first sticky note!
-          </p>
+          <p className="text-gray-500 text-lg">No tasks yet!</p>
         </div>
       ) : (
         tasks.map((task) => (
